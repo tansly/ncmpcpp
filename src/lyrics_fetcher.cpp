@@ -159,7 +159,8 @@ LyricsFetcher::Result FileLyricFetcher::fetch(const std::string &filepath)
 
 	TagLib::MPEG::File file(filepath.c_str());
 	if(!file.isOpen()){
-		result.second = "Can't open file" + filepath;
+		result.second = "Can't open file " + filepath;
+		return result;
 	}
 	TagLib::ID3v2::FrameList frames = file.ID3v2Tag()->frameListMap()["USLT"];
 	if(!frames.isEmpty()){
